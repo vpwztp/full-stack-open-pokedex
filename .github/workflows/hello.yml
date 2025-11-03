@@ -6,15 +6,15 @@ on:
       - main
 
 jobs:
-  hello_world_job:
+  simple_deployment_pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: Say hello
-        run: |
-          echo "Hello World!"
-      - name: Print current working directory
-        run: |
-          ls -l
-      - name: Print the current date
-        run: |
-          date
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Check style
+        run: npm run eslint
+   
